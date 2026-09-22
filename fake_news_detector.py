@@ -146,10 +146,16 @@ class FakeNewsModelSuite:
         self.vectorizer = joblib.load(paths["vec"])
         for k in self.MODEL_KEYS:
             if os.path.exists(paths[k]):
-                self.models[k] = joblib.load(paths[k])
+                try:
+                    self.models[k] = joblib.load(paths[k])
+                except Exception as e:
+                    print(f"[!] Warning: Could not unpickle model '{k}': {e}. Continuing with remaining models.")
         if os.path.exists(paths["metrics"]):
-            self.metrics = joblib.load(paths["metrics"])
-        print(f"Loaded {len(self.models)} models and vectorizer from {self.models_dir}")
+            try:
+                self.metrics = joblib.load(paths["metrics"])
+            except Exception:
+                pass
+        print(f"Loaded {len(self.models)} active models and vectorizer from {self.models_dir}")
         return True
 
     def train(self, df, test_size=0.25, max_features=10000, random_state=42, skip_gb=False):
@@ -236,8 +242,8 @@ class FakeNewsModelSuite:
                 "probabilities": prob
             }
 
-        consensus_label = "Not A Fake News" if true_votes > fake_votes else "Fake News"
-        confidence = max(true_votes, fake_votes) / len(self.models)
+        total_active = max(len(self.models), 1)
+        confidence = max(true_votes, fake_votes) / total_active
 
         return {
             "cleaned_text_preview": cleaned[:120] + "..." if len(cleaned) > 120 else cleaned,
