@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veritas AI | Fake News Detection System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="logo-title">Veritas <span>AI</span></h1>
+          <p class="logo-subtitle">Multi-Model Fake News Intelligence Detector</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-pulse"><span class="pulse-dot"></span> 4 ML Models Active</span>
+        <span class="badge">99.2% Benchmark Accuracy</span>
+      </div>
+    </header>
+
+    <!-- Main Grid Layout -->
+    <main class="main-grid">
+      <!-- Input Panel -->
+      <section class="card input-card">
+        <div class="card-header">
+          <h2>Article Authenticity Analyzer</h2>
+          <span class="hint-text">Paste article body or headline below</span>
+        </div>
+
+        <div class="samples-container">
+          <span class="samples-label">Quick Test Samples:</span>
+          <div id="samplesList" class="samples-chips">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <div class="textarea-wrapper">
+          <textarea 
+            id="newsInput" 
+            placeholder="Paste or type a news article, headline, or claim here to evaluate its authenticity..."
+            rows="7"
+          ></textarea>
+          <div class="textarea-footer">
+            <span id="charCount">0 characters | 0 words</span>
+            <button id="clearBtn" class="btn-text">Clear</button>
+          </div>
+        </div>
+
+        <div class="actions-row">
+          <button id="analyzeBtn" class="btn btn-primary">
+            <span class="btn-text-main">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              Verify Authenticity
+            </span>
+            <span class="btn-loading hidden">
+              <span class="spinner"></span> Analyzing NLP Patterns...
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Output / Results Panel -->
+      <section class="card results-card" id="resultsCard">
+        <div class="card-header">
+          <h2>Analysis Consensus</h2>
+          <span id="statusIndicator" class="badge">Ready</span>
+        </div>
+
+        <!-- Initial Placeholder State -->
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <h3>Awaiting Content</h3>
+          <p>Select a quick sample above or paste an article to generate consensus predictions across all 4 machine learning models.</p>
+        </div>
+
+        <!-- Live Result View -->
+        <div id="resultsView" class="results-view hidden">
+          <!-- Main Verdict Banner -->
+          <div id="verdictBanner" class="verdict-banner">
+            <div class="verdict-icon" id="verdictIcon"></div>
+            <div class="verdict-details">
+              <div class="verdict-label" id="verdictSubtitle">Classification Verdict</div>
+              <h3 class="verdict-title" id="verdictTitle">--</h3>
+            </div>
+            <div class="verdict-confidence">
+              <div class="confidence-number" id="confidenceValue">--%</div>
+              <div class="confidence-label">Consensus Level</div>
+            </div>
+          </div>
+
+          <!-- Ratio Progress Bar -->
+          <div class="meter-wrapper">
+            <div class="meter-labels">
+              <span>Model Agreement: <strong id="agreementRatio">--</strong></span>
+              <span>Distribution: <span id="votesBreakdown">--</span></span>
+            </div>
+            <div class="meter-bar">
+              <div id="meterProgress" class="meter-fill" style="width: 50%;"></div>
+            </div>
+          </div>
+
+          <!-- Comparison Grid for All 4 Models -->
+          <div class="models-grid" id="modelsGrid">
+            <!-- Populated dynamically with LR, DT, RF, GB cards -->
+          </div>
+
+          <!-- Preprocessed Clean Snippet -->
+          <div class="preprocessed-box">
+            <span class="box-title">Normalized Text Token Stream</span>
+            <p id="cleanSnippet" class="code-snippet">--</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Architecture & Model Stats Footer Grid -->
+    <section class="card stats-footer">
+      <div class="stats-header">
+        <h3>Ensemble Architecture & Algorithm Benchmarks</h3>
+        <span class="stats-sub">Trained on Reuters & Politifact Datasets (44,898 records)</span>
+      </div>
+      <div class="benchmarks-grid" id="benchmarksGrid">
+        <div class="benchmark-card">
+          <div class="bm-title">Logistic Regression</div>
+          <div class="bm-val">98.8%</div>
+          <div class="bm-sub">Linear margin classifier</div>
+        </div>
+        <div class="benchmark-card">
+          <div class="bm-title">Decision Tree</div>
+          <div class="bm-val">99.5%</div>
+          <div class="bm-sub">Information gain / Gini</div>
+        </div>
+        <div class="benchmark-card">
+          <div class="bm-title">Random Forest</div>
+          <div class="bm-val">98.9%</div>
+          <div class="bm-sub">Ensemble bagging trees</div>
+        </div>
+        <div class="benchmark-card">
+          <div class="bm-title">Gradient Boosting</div>
+          <div class="bm-val">99.6%</div>
+          <div class="bm-sub">Sequential boosting</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
