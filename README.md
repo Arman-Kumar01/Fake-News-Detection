@@ -1,11 +1,13 @@
 # Veritas AI - Fake News Detection System
 
-[![Python](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge&logo=render&logoColor=white)](https://fake-news-detection-2fpr.onrender.com/)
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
 [![Framework](https://img.shields.io/badge/Framework-Flask%203.1-black.svg)](https://flask.palletsprojects.com/)
-[![ML Engine](https://img.shields.io/badge/ML-Scikit--Learn-orange.svg)](https://scikit-learn.org/)
+[![ML Engine](https://img.shields.io/badge/ML-Scikit--Learn%201.6-orange.svg)](https://scikit-learn.org/)
 [![Model Accuracy](https://img.shields.io/badge/Accuracy-99.2%25-brightgreen.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
+> 🚀 **Live Web Application**: [https://fake-news-detection-2fpr.onrender.com](https://fake-news-detection-2fpr.onrender.com/)
 
 A full-stack, machine learning-powered misinformation intelligence platform that analyzes news articles, headlines, and claims in real-time using an ensemble of four NLP classification algorithms.
 
