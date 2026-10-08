@@ -131,6 +131,9 @@ Returns benchmark accuracies and configuration for active models.
 ├── fake_news_detector.py       # Core ML engine (cleaning, vectorizer, models, inference)
 ├── run_project.py              # CLI runner & interactive tester
 ├── requirements.txt            # Python dependencies
+├── Procfile                    # Cloud WSGI process definition
+├── render.yaml                 # Render Blueprint configuration
+├── Dockerfile                  # Container deployment build
 ├── saved_models/               # Serialized pre-trained models (.joblib)
 │   ├── vectorizer.joblib
 │   ├── model_lr.joblib
