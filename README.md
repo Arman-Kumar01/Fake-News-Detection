@@ -124,28 +124,6 @@ Returns benchmark accuracies and configuration for active models.
 
 ---
 
-## Cloud Deployment
-
-### Option A: Render (Recommended - Free Tier)
-1. Push this repository to your GitHub account.
-2. Sign in to [Render](https://dashboard.render.com/).
-3. Click **New +** > **Blueprint** (or **Web Service**).
-4. Connect this GitHub repository.
-5. Render detects `render.yaml` or `Procfile` and deploys automatically!
-
-### Option B: Railway
-1. Go to [Railway](https://railway.app/).
-2. Select **Deploy from GitHub repo**.
-3. Railway detects `requirements.txt` and `Procfile` and deploys automatically.
-
-### Option C: Docker Container
-```bash
-docker build -t fake-news-detector .
-docker run -p 5000:5000 fake-news-detector
-```
-
----
-
 ## Project Structure
 
 ```
@@ -153,9 +131,6 @@ docker run -p 5000:5000 fake-news-detector
 ├── fake_news_detector.py       # Core ML engine (cleaning, vectorizer, models, inference)
 ├── run_project.py              # CLI runner & interactive tester
 ├── requirements.txt            # Python dependencies
-├── Procfile                    # Cloud WSGI process definition
-├── render.yaml                 # Render Blueprint configuration
-├── Dockerfile                  # Container deployment build
 ├── saved_models/               # Serialized pre-trained models (.joblib)
 │   ├── vectorizer.joblib
 │   ├── model_lr.joblib
@@ -172,9 +147,3 @@ docker run -p 5000:5000 fake-news-detector
 │   └── datasets.zip            # Original dataset archive
 └── manual_testing.csv          # Held-out 20 validation articles
 ```
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
